@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Restorani from './components/Restorani';
 import { useState } from 'react';
 import Omiljeni from './components/Omiljeni';
+import Pagination from './components/Pagination';
 
 function App() {
   const [omiljeniR,setOmiljeniR]=useState([]);
@@ -129,6 +130,13 @@ function App() {
     setOmiljeniR(niz);
   }
 
+  const[currentPage, setCurrentPage] = useState(1);
+  const[postsPerPage, setPostsPerPage] = useState(4);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = sviRestorani.slice(firstPostIndex, lastPostIndex);
+
 
   return (
     <div>
@@ -136,11 +144,15 @@ function App() {
           <NavBar pretrazi={pretrazi}></NavBar>
           <Routes>
             <Route path="/" element={<Pocetna></Pocetna>}></Route>
-            <Route path="/restorani" element={<Restorani kriterijum={krterijumPretrage} restorani={sviRestorani} dodaj={dodaj} ></Restorani>}></Route>
+            <Route path="/restorani" element={<Restorani kriterijum={krterijumPretrage} restorani={currentPosts} dodaj={dodaj} >    
+            </Restorani>}></Route>
             <Route path="/omiljeni" element={<Omiljeni kriterijum={krterijumPretrage}  restorani={omiljeniR} izbaci={izbaci} ></Omiljeni>}></Route>
           </Routes>
+
        </BrowserRouter>
-       <Footer></Footer>
+       <Pagination totalPosts = {sviRestorani.length} postsPerPage = {postsPerPage} setCurrentPage = {setCurrentPage} /> 
+       
+       <Footer> </Footer>
        
     </div>
   );

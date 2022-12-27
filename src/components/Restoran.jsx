@@ -9,11 +9,11 @@ function Restoran({res, dodaj, mod, izbaci}) {
           <p className="card-title">{res.naziv}</p>
           <p className="card-text">{res.opis} <br /> Ocena: {res.ocena} <br/> Telefon: {res.telefon} <br /> Adresa: {res.adresa} <br /> </p>
            {mod==1 ?
-            <button className="btn btn-primary"
+            <button className="btnDodaj"
             style={{marginLeft: "20px" , opacity: "80%", padding:"5px", paddingLeft: "10px", paddingRight: "10px", border: "3px solid #EEEFEB"}} 
             onClick={()=>dodaj(res.id)}>Dodaj u omiljene</button>
             :
-            <button className="btn btn-danger" 
+            <button className="btnIzbaci" 
             style={{marginLeft: "20px" , opacity: "80%", padding:"5px", paddingLeft: "10px", paddingRight: "10px", border: "3px solid #EEEFEB"}}
             onClick={()=>izbaci(res.id)}>Izbaci iz omiljenih</button>
           }
