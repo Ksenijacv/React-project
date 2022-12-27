@@ -32,6 +32,7 @@ h1 {
 a{
   text-decoration: none;
   color: #fff;
+  
 }
  /* za hover preko stranica*/
 .nav li:after {
@@ -186,12 +187,12 @@ a{
 
   .card {
     border: #857F74;
-    border-style: dashed;
+    border-style: double;
     inline-size: 600px;
     overflow: hidden;
     background-color: #8E9189;
-    
-  
+    padding-bottom: 20px;
+   
   }
 
   .card-title {
@@ -218,11 +219,30 @@ a{
 
   }
 
-  
+  .restorani {
+    background-image: url("https://images.unsplash.com/photo-1484156818044-c040038b0719?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding-bottom: 100px;
+  }
 
+  h4  {
+    transition: all .5s ease;
+    color: #EEEFEB;
+    line-height: 1;
+    font-size: 17px;
+    background-color : transparent;
+    padding: 10px;
+    outline: none;
+    border-radius: 4px;
+  }
 
+  h4 :hover {
+    color: #494449;
+    background-color: #EEEFEB;
+}
 
-  /*kasnije dodati jos css za dugme dodaj*/
   
 
 
