@@ -1,4 +1,4 @@
-function Restoran({res}) {
+function Restoran({res, dodaj}) {
 
 
     return (
@@ -8,8 +8,9 @@ function Restoran({res}) {
         <div className="card-body">
           <p className="card-title">{res.naziv}</p>
           <p className="card-text">{res.opis} <br /> Ocena: {res.ocena} <br/> Telefon: {res.telefon} <br /> Adresa: {res.adresa} <br /> </p>
-          <h4><a href="#" className="btn btn-primary" style={{marginLeft: "20px" , opacity: "80%", 
-          padding:"10px", paddingLeft: "20px", paddingRight: "20px", border: "3px solid #EEEFEB"}}>Dodaj u omiljene</a></h4>
+          <button href="#" className="btn btn-primary" style={{marginLeft: "20px" , opacity: "80%", 
+          padding:"5px", paddingLeft: "10px", paddingRight: "10px", border: "3px solid #EEEFEB"}}
+          onClick={()=>dodaj(res.id)} > Dodaj u omiljene </button>
         </div>
       </div>
 

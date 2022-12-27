@@ -6,8 +6,10 @@ import Pocetna from './components/Pocetna';
 import Footer from './components/Footer';
 import Restorani from './components/Restorani';
 import { useState } from 'react';
+import Omiljeni from './components/Omiljeni';
 
 function App() {
+  const [omiljeniR,setOmiljeniR]=useState([]);
   const[sviRestorani] = useState([
 
     {
@@ -18,6 +20,7 @@ function App() {
         ocena: "4.6",
         telefon: "011 3034342",
         adresa:  "Karadjordjeva 2",
+        omiljeni: 0
 
     },
     {
@@ -28,6 +31,7 @@ function App() {
       ocena: "4.5",
       telefon: "060 4660036",
       adresa:  "Bulevar Milutina Milankovica 1i",
+      omiljeni: 0
 
     },
     {
@@ -38,6 +42,7 @@ function App() {
       ocena: "4.4",
       telefon: "062 562751",
       adresa:  "Karadjordjeva 4",
+      omiljeni: 0
 
      },
      {
@@ -48,6 +53,7 @@ function App() {
       ocena: "4.7",
       telefon: "062 221873",
       adresa:  "Rankeova 7",
+      omiljeni: 0
 
      },
      {
@@ -58,6 +64,7 @@ function App() {
       ocena: "4.6",
       telefon: "011 3295351",
       adresa:  "Cvijiceva 110",
+      omiljeni: 0
 
      },
      {
@@ -68,6 +75,7 @@ function App() {
       ocena: "4.7",
       telefon: "011 2641944",
       adresa:  "Bulevar Oslobođenja 18a",
+      omiljeni: 0
 
      },
      {
@@ -78,6 +86,7 @@ function App() {
       ocena: "4.6",
       telefon: "011 4500895",
       adresa:  "Bulevar Milutina Milankovića 11b",
+      omiljeni: 0
 
      },
      {
@@ -88,19 +97,37 @@ function App() {
       ocena: "4.6",
       telefon: "064 6123123",
       adresa:  "Uzun Mirkova 11",
+      omiljeni: 0
 
      },
 
   ]);
 
+  const [krterijumPretrage,setKriterijumPretrage]=useState("");
+
+  function pretrazi(kriterijum){
+    setKriterijumPretrage(kriterijum);
+  }
+
+  function dodaj(id){
+    for(var i=0;i<sviRestorani.length;i++){
+      if(sviRestorani[i].id==id){
+        sviRestorani[i].omiljeni=1;
+      }
+    }
+    var niz = sviRestorani.filter((res)=>res.omiljeni==1);
+    setOmiljeniR(niz);
+  }
+
 
   return (
     <div>
       <BrowserRouter>
-          <NavBar></NavBar>
+          <NavBar pretrazi={pretrazi}></NavBar>
           <Routes>
             <Route path="/" element={<Pocetna></Pocetna>}></Route>
-            <Route path="/restorani" element={<Restorani  restorani={sviRestorani}></Restorani>}></Route>
+            <Route path="/restorani" element={<Restorani kriterijum={krterijumPretrage} restorani={sviRestorani} dodaj={dodaj}></Restorani>}></Route>
+            <Route path="/omiljeni" element={<Omiljeni kriterijum={krterijumPretrage}  restorani={omiljeniR}></Omiljeni>}></Route>
           </Routes>
        </BrowserRouter>
        <Footer></Footer>
